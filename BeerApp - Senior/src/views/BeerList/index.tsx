@@ -9,8 +9,9 @@ const BeerList = () => {
   const navigate = useNavigate();
   const [beerList, setBeerList] = useState<Array<Beer>>([]);
 
-  // eslint-disable-next-line
-  useEffect(fetchData.bind(this, setBeerList), []);
+  useEffect(() => {
+    fetchData(setBeerList)
+  }, []);
 
   const onBeerClick = (id: string) => navigate(`/beer/${id}`);
 

@@ -9,8 +9,9 @@ const Home = () => {
   const [beerList, setBeerList] = useState<Array<Beer>>([]);
   const [savedList, setSavedList] = useState<Array<Beer>>([]);
 
-  // eslint-disable-next-line
-  useEffect(fetchData.bind(this, setBeerList), []);
+  useEffect(() => {
+    fetchData(setBeerList)
+  }, []);
 
   return (
     <article>
