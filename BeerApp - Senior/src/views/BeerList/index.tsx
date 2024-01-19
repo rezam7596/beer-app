@@ -3,15 +3,18 @@ import { Beer } from '../../types';
 import { fetchData } from './utils';
 import { Avatar, List, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material';
 import SportsBar from '@mui/icons-material/SportsBar';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import BeerFilter from "../../components/BeerFilter";
 
 const BeerList = () => {
   const navigate = useNavigate();
+  let [searchParams] = useSearchParams();
   const [beerList, setBeerList] = useState<Array<Beer>>([]);
 
   useEffect(() => {
-    fetchData(setBeerList)
-  }, []);
+    const params = Object.fromEntries(searchParams.entries())
+    fetchData(setBeerList, params)
+  }, [searchParams]);
 
   const onBeerClick = (id: string) => navigate(`/beer/${id}`);
 
@@ -21,6 +24,7 @@ const BeerList = () => {
         <header>
           <h1>BeerList page</h1>
         </header>
+        <BeerFilter />
         <main>
           <List>
             {beerList.map((beer) => (
