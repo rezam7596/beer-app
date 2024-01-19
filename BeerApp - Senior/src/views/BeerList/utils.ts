@@ -1,16 +1,34 @@
-import { getBeerList } from '../../api';
-import {ApiParams, Beer} from '../../types';
+import { getBeerList, getBeerMetaData } from '../../api';
+import { ApiMetadata, ApiParams, Beer } from '../../types';
 import handle from '../../utils/error';
 
-const fetchData = (setData: (data: Array<Beer>) => void, params: ApiParams) => {
+type DATA = {
+  list: Array<Beer>;
+  metadata: ApiMetadata;
+}
+
+const fetchData = (setData: (data: DATA) => void, params: ApiParams) => {
   (async () => {
     try {
-      const response = await getBeerList(params);
-      setData(response.data);
+      const [
+        { data: list },
+        { data: metadata }
+      ] = await Promise.all([
+        getBeerList({ per_page: 10, ...params }),
+        getBeerMetaData({ per_page: 10, ...params })
+      ])
+      setData({ list, metadata });
     } catch (error) {
       handle(error);
     }
   })();
 };
 
-export { fetchData };
+const getTotalPage = (metadata: ApiMetadata | undefined) => {
+  if (!metadata) {
+    return 0
+  }
+  return Math.ceil(Number(metadata?.total) / Number(metadata?.per_page)) ?? 0;
+}
+
+export { fetchData, getTotalPage };
