@@ -6,6 +6,8 @@ import SportsBar from '@mui/icons-material/SportsBar';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import BeerFilter from "../../components/BeerFilter";
 import Pagination from "../../components/Pagination";
+import BeerSort from "../../components/BeerSort";
+import styles from './BeerList.module.css';
 
 const BeerList = () => {
   const navigate = useNavigate();
@@ -15,10 +17,10 @@ const BeerList = () => {
 
   useEffect(() => {
     const params = Object.fromEntries(searchParams.entries())
-    fetchData(({ list, metadata }) => {
+    fetchData(({list, metadata}) => {
       setBeerList(list);
       setBeerListMetadata(metadata)
-    }, params)
+    }, {per_page: 10, ...params})
   }, [searchParams]);
 
   const onBeerClick = (id: string) => navigate(`/beer/${id}`);
@@ -29,22 +31,27 @@ const BeerList = () => {
         <header>
           <h1>BeerList page</h1>
         </header>
-        <BeerFilter />
+        <BeerFilter/>
+        <div className={styles.beerSort}>
+          <BeerSort/>
+        </div>
         <main>
           <List>
             {beerList.map((beer) => (
               <ListItemButton key={beer.id} onClick={onBeerClick.bind(this, beer.id)}>
                 <ListItemAvatar>
                   <Avatar>
-                    <SportsBar />
+                    <SportsBar/>
                   </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary={beer.name} secondary={beer.brewery_type} />
+                <ListItemText primary={beer.name} secondary={beer.brewery_type}/>
               </ListItemButton>
             ))}
           </List>
         </main>
-        <Pagination count={getTotalPage(beerListMetadata)} />
+        <div className={styles.pagination}>
+          <Pagination count={getTotalPage(beerListMetadata)}/>
+        </div>
       </section>
     </article>
   );

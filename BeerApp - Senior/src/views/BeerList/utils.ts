@@ -14,8 +14,8 @@ const fetchData = (setData: (data: DATA) => void, params: ApiParams) => {
         { data: list },
         { data: metadata }
       ] = await Promise.all([
-        getBeerList({ per_page: 10, ...params }),
-        getBeerMetaData({ per_page: 10, ...params })
+        getBeerList(params),
+        getBeerMetaData(params)
       ])
       setData({ list, metadata });
     } catch (error) {
