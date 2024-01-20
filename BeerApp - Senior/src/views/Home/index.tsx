@@ -1,17 +1,22 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { fetchData } from './utils';
 import { Beer } from '../../types';
-import { Link as RouterLink } from 'react-router-dom';
-import { Button, Checkbox, Paper, TextField, Link } from '@mui/material';
+import { Paper, TextField } from '@mui/material';
 import styles from './Home.module.css';
+import SavedList from "../../components/SavedList";
+import { SavedListProvider } from "../../components/SavedList/SavedListProvider";
+import HomeBeerItem from "../../components/HomeBeerItem";
 
 const Home = () => {
   const [beerList, setBeerList] = useState<Array<Beer>>([]);
-  const [savedList, setSavedList] = useState<Array<Beer>>([]);
 
   useEffect(() => {
-    fetchData(setBeerList)
+    fetchData(setBeerList, '')
   }, []);
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    fetchData(setBeerList, event.target.value)
+  }
 
   return (
     <article>
@@ -19,43 +24,17 @@ const Home = () => {
         <main>
           <Paper>
             <div className={styles.listContainer}>
-              <div className={styles.listHeader}>
-                <TextField label='Filter...' variant='outlined' />
-                <Button variant='contained'>Reload list</Button>
+              <div>
+                <TextField label='Filter...' variant='outlined' onChange={handleSearch} />
               </div>
               <ul className={styles.list}>
-                {beerList.map((beer, index) => (
-                  <li key={index.toString()}>
-                    <Checkbox />
-                    <Link component={RouterLink} to={`/beer/${beer.id}`}>
-                      {beer.name}
-                    </Link>
-                  </li>
-                ))}
+                {beerList.map(beer => <HomeBeerItem key={beer.id} beer={beer} />)}
               </ul>
             </div>
           </Paper>
 
           <Paper>
-            <div className={styles.listContainer}>
-              <div className={styles.listHeader}>
-                <h3>Saved items</h3>
-                <Button variant='contained' size='small'>
-                  Remove all items
-                </Button>
-              </div>
-              <ul className={styles.list}>
-                {savedList.map((beer, index) => (
-                  <li key={index.toString()}>
-                    <Checkbox />
-                    <Link component={RouterLink} to={`/beer/${beer.id}`}>
-                      {beer.name}
-                    </Link>
-                  </li>
-                ))}
-                {!savedList.length && <p>No saved items</p>}
-              </ul>
-            </div>
+            <SavedList />
           </Paper>
         </main>
       </section>
@@ -63,4 +42,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default () => (<SavedListProvider><Home /></SavedListProvider>);

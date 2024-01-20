@@ -1,0 +1,14 @@
+.container {
+  padding: 20px;
+  background: #fff;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list {
+  list-style: none;
+}

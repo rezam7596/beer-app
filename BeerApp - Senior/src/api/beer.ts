@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { API } from './config';
 import { ApiParams } from '../types';
 
@@ -15,8 +15,14 @@ const getRandomBeerList = (size = 3) =>
     params: { size },
   });
 
-const searchBeerList = (query: string, isAutoComplete = false) =>
-  axios.get(`${API}breweries/${isAutoComplete ? 'autocomplete' : 'search'}`, {
+const searchBeerList = (query: string, config: AxiosRequestConfig = {}) =>
+  axios.get(`${API}breweries/search`, {
+    ...config,
+    params: { query, per_page: 10 },
+  })
+
+const autoCompleteBeerList = (query: string) =>
+  axios.get(`${API}breweries/autocomplete`, {
     params: { query },
   });
 
