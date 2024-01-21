@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Pagination } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
-import { removeEmptyProperties } from "../../utils/object";
+import { removeEmptyProperties } from "../../utils";
 
 interface Props {
   count: number;

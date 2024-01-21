@@ -8,9 +8,8 @@ import {
   SelectChangeEvent, FormControl, InputLabel
 } from "@mui/material";
 import { beerTypes } from "./constants";
-import { capitalizeFirstLetter } from "../../utils";
+import { capitalizeFirstLetter, removeEmptyProperties } from "../../utils";
 import { useSearchParams } from "react-router-dom";
-import { removeEmptyProperties } from "../../utils/object";
 
 const BeerFilter = () => {
   let [searchParams, setSearchParams] = useSearchParams();

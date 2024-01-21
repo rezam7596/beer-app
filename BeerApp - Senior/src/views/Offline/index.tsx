@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
+import { Alert, AlertTitle } from "@mui/material";
 
 const Offline = () => {
-  const [isOnline, setIsOnline] = useState(true);
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
 
   const setOnline = () => setIsOnline(true);
   const setOffline = () => setIsOnline(false);
@@ -19,12 +20,10 @@ const Offline = () => {
   return isOnline ? null : (
     <article>
       <section>
-        <header>
-          <h1>You are offline</h1>
-        </header>
-        <main>
-          <span>App needs internet to start working</span>
-        </main>
+        <Alert severity="warning">
+          <AlertTitle>You are offline</AlertTitle>
+          App has limited functionality on offline mode
+        </Alert>
       </section>
     </article>
   );

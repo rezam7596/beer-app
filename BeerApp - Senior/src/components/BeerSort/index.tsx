@@ -5,8 +5,7 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import styles from './BeerSort.module.css';
 import { sortFields, sortOrders } from "./constants";
-import { capitalizeFirstLetter } from "../../utils";
-import { removeEmptyProperties } from "../../utils/object";
+import { capitalizeFirstLetter, removeEmptyProperties } from "../../utils";
 import { getSort, getSortFieldsAndOrder } from "./utils";
 import { SORT } from "../../types";
 

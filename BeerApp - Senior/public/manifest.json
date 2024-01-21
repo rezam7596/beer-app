@@ -1,6 +1,7 @@
 {
   "short_name": "BW",
   "name": "BeerWiki",
+  "description": "BeerWiki, a free and open-source app to provide public information on breweries.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -11,6 +12,12 @@
       "src": "logo192.png",
       "type": "image/png",
       "sizes": "192x192"
+    },
+    {
+      "src": "logo192-maskable.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
     },
     {
       "src": "logo512.png",
