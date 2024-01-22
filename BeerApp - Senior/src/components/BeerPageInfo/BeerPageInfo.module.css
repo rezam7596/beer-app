@@ -1,0 +1,68 @@
+.container {
+  font-family: "Cherry Swash", serif;
+  background-color: #FAE96F;
+  display: flex;
+  gap: 20px;
+  border: #fff solid 5px;
+  border-radius: 15px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.map {
+  flex: 2 0 0;
+}
+
+.texts {
+  flex: 3 0 0;
+  padding: 15px;
+  overflow: hidden;
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.infoRow a {
+  text-decoration: none;
+}
+
+.infoRow img {
+  width: 35px;
+  object-fit: contain;
+}
+
+.typeInfo {
+  align-items: baseline;
+}
+
+.typeInfo h2 {
+  margin: 0;
+}
+
+.infoRow p {
+  word-wrap:break-word;
+  margin: 10px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.phoneInfo {
+  margin-top: 20px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    flex-direction: column-reverse;
+    gap: 0;
+  }
+  .map {
+    flex-basis: 300px;
+  }
+}
