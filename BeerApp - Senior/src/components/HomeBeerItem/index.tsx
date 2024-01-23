@@ -19,6 +19,7 @@ const HomeBeerItem = ({ beer }: Props) => {
         onChange={() => toggleBeerSave(beer)}
         icon={<FavoriteBorder/>}
         checkedIcon={<Favorite sx={{ color: 'red' }} />}
+        inputProps={{ 'aria-label': beer.name }}
       />
       <Link component={RouterLink} to={`/beer/${beer.id}`}>
         {beer.name}

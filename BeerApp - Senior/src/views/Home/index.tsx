@@ -7,7 +7,7 @@ import SavedList from "../../components/SavedList";
 import { SavedListProvider } from "../../components/SavedList/SavedListProvider";
 import HomeBeerItem from "../../components/HomeBeerItem";
 
-const Home = () => {
+const HomeComponent = () => {
   const [beerList, setBeerList] = useState<Array<Beer>>([]);
 
   useEffect(() => {
@@ -42,4 +42,10 @@ const Home = () => {
   );
 };
 
-export default () => (<SavedListProvider><Home /></SavedListProvider>);
+export default function Home() {
+  return (
+    <SavedListProvider>
+      <HomeComponent />
+    </SavedListProvider>
+  )
+}

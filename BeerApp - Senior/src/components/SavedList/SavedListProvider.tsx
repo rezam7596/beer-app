@@ -2,12 +2,12 @@ import React, { createContext, useContext } from 'react';
 import { Beer } from "../../types";
 import { useLocalStorage } from "../../hooks";
 
-interface SavedContext {
+interface ISavedContext {
   savedList: Array<Beer>,
   toggleBeerSave: (beer: Beer) => void,
   removeAllSaves: () => void,
 }
-const SavedContext = createContext<SavedContext>({
+const SavedContext = createContext<ISavedContext>({
   savedList: [],
   toggleBeerSave: () => {},
   removeAllSaves: () => {}

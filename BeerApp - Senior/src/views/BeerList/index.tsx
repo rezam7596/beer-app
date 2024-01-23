@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import {ApiMetadata, Beer} from '../../types';
 import { fetchData, getTotalPage } from './utils';
-import { Avatar, List, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material';
+import { Avatar, List, ListItem, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material';
 import SportsBar from '@mui/icons-material/SportsBar';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import BeerFilter from "../../components/BeerFilter";
@@ -38,14 +38,16 @@ const BeerList = () => {
         <main>
           <List>
             {beerList.map((beer) => (
-              <ListItemButton key={beer.id} onClick={onBeerClick.bind(this, beer.id)}>
-                <ListItemAvatar>
-                  <Avatar>
-                    <SportsBar/>
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary={beer.name} secondary={beer.brewery_type}/>
-              </ListItemButton>
+              <ListItem key={beer.id} disablePadding>
+                <ListItemButton onClick={onBeerClick.bind(this, beer.id)}>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <SportsBar/>
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary={beer.name} secondary={beer.brewery_type}/>
+                </ListItemButton>
+              </ListItem>
             ))}
           </List>
         </main>

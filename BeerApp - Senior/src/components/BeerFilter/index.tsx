@@ -3,7 +3,6 @@ import styles from './BeerFilter.module.css';
 import {
   Button, TextField, Select, MenuItem, SelectChangeEvent, FormControl, InputLabel,
 } from "@mui/material";
-import ClearIcon from '@mui/icons-material/Clear';
 import { beerTypes } from "./constants";
 import { capitalizeFirstLetter, removeEmptyProperties } from "../../utils";
 import { useSearchParams } from "react-router-dom";

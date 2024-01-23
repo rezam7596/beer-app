@@ -26,4 +26,8 @@ const BeerPageHeader = ({ beer }: Props) => {
   );
 };
 
+export function BeerImagePreloader() {
+  return <link rel="preload" as="image" href={beerGlassImage}/>
+}
+
 export default BeerPageHeader;

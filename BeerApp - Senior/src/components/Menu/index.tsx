@@ -8,7 +8,6 @@ import {
   ListItemIcon,
   ListItemText,
   Toolbar,
-  Link,
 } from '@mui/material';
 import SportsBar from '@mui/icons-material/SportsBar';
 import HomeIcon from '@mui/icons-material/Home';
@@ -33,26 +32,22 @@ export default function ResponsiveDrawer(props: Props) {
     <>
       <Divider />
       <List>
-        <Link component={RouterLink} to={`/`}>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText primary='Home' />
-            </ListItemButton>
-          </ListItem>
-        </Link>
-        <Link component={RouterLink} to={`/beer`}>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <SportsBar />
-              </ListItemIcon>
-              <ListItemText primary='Beer List' />
-            </ListItemButton>
-          </ListItem>
-        </Link>
+        <ListItem disablePadding>
+          <ListItemButton component={RouterLink} to={`/`}>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary='Home' />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={RouterLink} to={`/beer`}>
+            <ListItemIcon>
+              <SportsBar />
+            </ListItemIcon>
+            <ListItemText primary='Beer List' />
+          </ListItemButton>
+        </ListItem>
       </List>
     </>
   );

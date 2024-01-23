@@ -36,7 +36,7 @@ const BeerPageInfo = ({ beer }: Props) => {
         </div>
         <div className={`${styles.infoRow} ${!beer.website_url ? styles.hidden : ''}`}>
           <img alt="website" src={websiteIcon}/>
-          <p><a target="_blank" href={beer.website_url}>{getUrlDomain(beer.website_url)}</a></p>
+          <p><a target="_blank" rel="noreferrer" href={beer.website_url}>{getUrlDomain(beer.website_url)}</a></p>
         </div>
       </div>
     </section>

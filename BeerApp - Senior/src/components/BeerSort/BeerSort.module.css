@@ -5,6 +5,10 @@
   align-items: center;
 }
 
+.container p {
+  font-weight: bold;
+}
+
 @media screen and (max-width: 600px) {
   .container {
     font-size: 0.9em;

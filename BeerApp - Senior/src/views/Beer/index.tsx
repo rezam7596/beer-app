@@ -4,7 +4,7 @@ import { fetchData } from './utils';
 import { useParams } from 'react-router-dom';
 import styles from './Beer.module.css';
 import BeerPageAnimatedBeer from "../../components/BeerPageAnimatedBeer";
-import BeerPageHeader from "../../components/BeerPageHeader";
+import BeerPageHeader, { BeerImagePreloader } from "../../components/BeerPageHeader";
 import BeerPageInfo from "../../components/BeerPageInfo";
 
 const Beer = () => {
@@ -29,6 +29,7 @@ const Beer = () => {
           <BeerPageAnimatedBeer />
         </div>
       </div>
+      <BeerImagePreloader />
     </article>
   );
 };

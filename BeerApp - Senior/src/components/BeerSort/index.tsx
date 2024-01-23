@@ -18,13 +18,6 @@ const BeerSort = () => {
     sortFields: searchParamsData.fields,
   });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.value,
-    });
-  };
-
   const handleFieldChange = (event: React.MouseEvent<HTMLElement>, newFields: string[]) => {
     const newState = {...state, sortFields: newFields};
     setState(newState);
@@ -48,7 +41,7 @@ const BeerSort = () => {
 
   return (
     <div className={styles.container}>
-      <h4>Sort by</h4>
+      <p>Sort by</p>
       <ToggleButtonGroup
         value={state.sortFields}
         onChange={handleFieldChange}
@@ -60,7 +53,7 @@ const BeerSort = () => {
           </ToggleButton>
         ))}
       </ToggleButtonGroup>
-      <h4>Order</h4>
+      <p>Order</p>
       <ToggleButtonGroup
         exclusive
         value={state.sortOrder}
@@ -68,7 +61,7 @@ const BeerSort = () => {
         aria-label="sort order"
       >
         {sortOrders.map(order => (
-          <ToggleButton key={order} value={order}>
+          <ToggleButton key={order} aria-label={order} value={order}>
             {order === 'asc' ? <ArrowUpwardIcon/> : <ArrowDownwardIcon/>}
           </ToggleButton>
         ))}

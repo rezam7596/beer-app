@@ -17,7 +17,7 @@ const BeerSaved = () => {
       </div>
       <ul className={styles.list}>
         {savedList.map((beer) => <HomeBeerItem key={beer.id} beer={beer} />)}
-        {!savedList.length && <p>No saved items</p>}
+        {!savedList.length && <li>No saved items</li>}
       </ul>
     </div>
   );
