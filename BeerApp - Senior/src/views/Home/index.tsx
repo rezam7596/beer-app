@@ -5,7 +5,7 @@ import {CircularProgress, InputAdornment, Paper, TextField} from '@mui/material'
 import styles from './Home.module.css';
 import SavedList from "../../components/SavedList";
 import { SavedListProvider } from "../../components/SavedList/SavedListProvider";
-import HomeBeerItem from "../../components/HomeBeerItem";
+import HomeBeerList from "../../components/HomeBeerList";
 
 const HomeComponent = () => {
   const [beerList, setBeerList] = useState<Array<Beer>>([]);
@@ -39,12 +39,9 @@ const HomeComponent = () => {
                   }}
                 />
               </div>
-              <ul className={styles.list}>
-                {beerList.map(beer => <HomeBeerItem key={beer.id} beer={beer} />)}
-              </ul>
+              <HomeBeerList list={beerList} />
             </div>
           </Paper>
-
           <Paper>
             <SavedList />
           </Paper>
@@ -61,3 +58,5 @@ export default function Home() {
     </SavedListProvider>
   )
 }
+
+export { Home as Component };

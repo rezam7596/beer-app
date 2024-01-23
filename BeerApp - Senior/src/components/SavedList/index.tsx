@@ -2,7 +2,7 @@ import React from "react";
 import styles from './SavedList.module.css';
 import { Button } from "@mui/material";
 import { useSavedList } from "./SavedListProvider";
-import HomeBeerItem from "../HomeBeerItem";
+import HomeBeerList from "../HomeBeerList";
 
 const BeerSaved = () => {
   const{ savedList, removeAllSaves } = useSavedList();
@@ -15,12 +15,9 @@ const BeerSaved = () => {
           Remove all items
         </Button>
       </div>
-      <ul className={styles.list}>
-        {savedList.map((beer) => <HomeBeerItem key={beer.id} beer={beer} />)}
-        {!savedList.length && <li>No saved items</li>}
-      </ul>
+      <HomeBeerList list={savedList} />
     </div>
   );
 };
 
-export default BeerSaved;
+export default React.memo(BeerSaved);

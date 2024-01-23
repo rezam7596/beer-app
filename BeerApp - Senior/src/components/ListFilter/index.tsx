@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styles from './BeerFilter.module.css';
+import styles from './ListFilter.module.css';
 import {
   Button, TextField, Select, MenuItem, SelectChangeEvent, FormControl, InputLabel, CircularProgress,
 } from "@mui/material";
@@ -8,7 +8,7 @@ import { beerTypes } from "./constants";
 import { capitalizeFirstLetter, removeEmptyProperties } from "../../utils";
 import { useSearchParams } from "react-router-dom";
 
-const BeerFilter = ({ loading }: { loading: boolean }) => {
+const ListFilter = ({ loading }: { loading: boolean }) => {
   let [searchParams, setSearchParams] = useSearchParams();
 
   const [state, setState] = React.useState({
@@ -79,4 +79,4 @@ const BeerFilter = ({ loading }: { loading: boolean }) => {
   );
 };
 
-export default BeerFilter;
+export default ListFilter;

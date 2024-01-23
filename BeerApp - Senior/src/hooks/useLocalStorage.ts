@@ -22,7 +22,8 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
   const setState = React.useCallback(
     (newValue: any) => {
       try {
-        const nextState = typeof newValue === "function" ? newValue(JSON.parse(state as string)) : newValue;
+        const currentState = getLocalStorageItem(key);
+        const nextState = typeof newValue === "function" ? newValue(JSON.parse(currentState as string)) : newValue;
         if (nextState === undefined) {
           removeLocalStorageItem(key);
         } else {
@@ -32,7 +33,7 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
         console.warn(e);
       }
     },
-    [key, state]
+    [key]
   );
 
   return [JSON.parse(state as string), setState] as [T, (value: T | ((prevState: T) => T)) => void];

@@ -4,18 +4,17 @@ import Favorite from "@mui/icons-material/Favorite";
 import { Link as RouterLink } from "react-router-dom";
 import React from "react";
 import { Beer } from "../../types";
-import { useSavedList } from "../SavedList/SavedListProvider";
 
 interface Props {
   beer: Beer;
+  isSaved: boolean;
+  toggleBeerSave: (beer: Beer) => void;
 }
-const HomeBeerItem = ({ beer }: Props) => {
-  const { savedList, toggleBeerSave } = useSavedList();
-
+const HomeBeerItem = ({ beer, isSaved, toggleBeerSave }: Props) => {
   return (
     <li key={beer.id}>
       <Checkbox
-        checked={savedList.some(item => item.id === beer.id)}
+        checked={isSaved}
         onChange={() => toggleBeerSave(beer)}
         icon={<FavoriteBorder/>}
         checkedIcon={<Favorite sx={{ color: 'red' }} />}
@@ -28,4 +27,11 @@ const HomeBeerItem = ({ beer }: Props) => {
   );
 };
 
-export default HomeBeerItem;
+export default React.memo(HomeBeerItem, (prevProps, nextProps) => {
+  return (Object.keys(prevProps) as Array<keyof Props>).reduce((isEqual, key) => {
+    if (key === 'beer') {
+      return isEqual && prevProps[key].id === nextProps[key].id
+    }
+    return isEqual && Object.is(prevProps[key], nextProps[key])
+  }, true)
+});

@@ -3,13 +3,13 @@ import {useSearchParams} from "react-router-dom";
 import { ToggleButtonGroup, ToggleButton } from "@mui/material";
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import styles from './BeerSort.module.css';
+import styles from './ListSort.module.css';
 import { sortFields, sortOrders } from "./constants";
 import { capitalizeFirstLetter, removeEmptyProperties } from "../../utils";
 import { getSort, getSortFieldsAndOrder } from "./utils";
 import { SORT } from "../../types";
 
-const BeerSort = () => {
+const ListSort = () => {
   let [searchParams, setSearchParams] = useSearchParams();
 
   const searchParamsData = getSortFieldsAndOrder(searchParams.get('sort') || '')
@@ -70,4 +70,4 @@ const BeerSort = () => {
   );
 };
 
-export default BeerSort;
+export default ListSort;

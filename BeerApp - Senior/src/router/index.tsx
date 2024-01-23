@@ -1,27 +1,31 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Offline from '../views/Offline';
-import Home from '../views/Home';
-import NotFound from '../views/404';
-import BeerList from '../views/BeerList';
-import Beer from '../views/Beer';
-import Footer from '../components/Footer';
+import { createBrowserRouter, createRoutesFromElements, Outlet, Route, RouterProvider } from 'react-router-dom';
 import Menu from '../components/Menu';
+import Offline from '../views/Offline';
+import Footer from '../components/Footer';
 
-const Router = () => (
-  <BrowserRouter>
+function Layout() {
+  return (
     <Menu>
       <Offline />
-      <Routes>
-        <Route index element={<Home />} />
-        <Route path='beer'>
-          <Route index element={<BeerList />} />
-          <Route path=':id' element={<Beer />} />
-        </Route>
-        <Route path='*' element={<NotFound />} />
-      </Routes>
+      <Outlet />
       <Footer />
     </Menu>
-  </BrowserRouter>
-);
+  )
+}
 
-export default Router;
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route element={<Layout />}>
+      <Route index lazy={() => import('../views/Home')} />
+      <Route path='beer'>
+        <Route index lazy={() => import('../views/BeerList')} />
+        <Route path=':id' lazy={() => import('../views/Beer')} />
+      </Route>
+      <Route path='*' lazy={() => import('../views/404')} />
+    </Route>
+  )
+)
+
+export default function Router() {
+  return <RouterProvider router={router} />;
+}

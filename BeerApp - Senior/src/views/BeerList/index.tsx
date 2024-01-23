@@ -4,9 +4,9 @@ import { fetchData, getTotalPage } from './utils';
 import { Avatar, List, ListItem, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material';
 import SportsBar from '@mui/icons-material/SportsBar';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import BeerFilter from "../../components/BeerFilter";
+import ListFilter from "../../components/ListFilter";
 import Pagination from "../../components/Pagination";
-import BeerSort from "../../components/BeerSort";
+import ListSort from "../../components/ListSort";
 import styles from './BeerList.module.css';
 
 const BeerList = () => {
@@ -36,9 +36,9 @@ const BeerList = () => {
         <header>
           <h1>BeerList page</h1>
         </header>
-        <BeerFilter loading={loading}/>
+        <ListFilter loading={loading}/>
         <div className={styles.beerSort}>
-          <BeerSort/>
+          <ListSort/>
         </div>
         <main>
           <List>
@@ -65,3 +65,4 @@ const BeerList = () => {
 };
 
 export default BeerList;
+export { BeerList as Component };

@@ -35,3 +35,4 @@ const Beer = () => {
 };
 
 export default Beer;
+export { Beer as Component };
