@@ -39,7 +39,7 @@ export function SavedListProvider({ children }: Props) {
 
   const contextValue = React.useMemo(() => ({
     savedList, toggleBeerSave, removeAllSaves, getIsBeerSaved
-  }), [savedList, setSavedList])
+  }), [savedList, toggleBeerSave, removeAllSaves, getIsBeerSaved])
 
   return (
     <SavedContext.Provider value={contextValue}>
