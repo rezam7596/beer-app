@@ -1,13 +1,14 @@
 import * as React from 'react';
 import styles from './BeerFilter.module.css';
 import {
-  Button, TextField, Select, MenuItem, SelectChangeEvent, FormControl, InputLabel,
+  Button, TextField, Select, MenuItem, SelectChangeEvent, FormControl, InputLabel, CircularProgress,
 } from "@mui/material";
+import SearchIcon from '@mui/icons-material/Search';
 import { beerTypes } from "./constants";
 import { capitalizeFirstLetter, removeEmptyProperties } from "../../utils";
 import { useSearchParams } from "react-router-dom";
 
-const BeerFilter = () => {
+const BeerFilter = ({ loading }: { loading: boolean }) => {
   let [searchParams, setSearchParams] = useSearchParams();
 
   const [state, setState] = React.useState({
@@ -29,6 +30,12 @@ const BeerFilter = () => {
     });
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if(e.key === 'Enter') {
+      applySearch();
+    }
+  }
+
   const applySearch = () => {
     setSearchParams(
       removeEmptyProperties({
@@ -41,7 +48,14 @@ const BeerFilter = () => {
   return (
     <div className={styles.container}>
       <div className={styles.inputs}>
-        <TextField name="by_name" label='Name' value={state.by_name} onChange={handleChange} sx={{ minWidth: 200 }}/>
+        <TextField
+          name="by_name"
+          label='Name'
+          value={state.by_name}
+          onChange={handleChange}
+          onKeyDown={handleKeyPress}
+          sx={{ minWidth: 200 }}
+        />
         <FormControl fullWidth >
           <InputLabel id="type-select-label">Type</InputLabel>
           <Select
@@ -57,7 +71,10 @@ const BeerFilter = () => {
           </Select>
         </FormControl>
       </div>
-      <Button variant='contained' onClick={applySearch}>Search</Button>
+      <Button variant='contained' className={styles.button} disabled={loading} onClick={applySearch}>
+        <span>Search</span>
+        {loading ? <CircularProgress size={25} color="inherit"/> : <SearchIcon /> }
+      </Button>
     </div>
   );
 };

@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 const handle = (error: unknown) => {
-  if (axios.isAxiosError(error)) {
+  if (axios.isCancel(error)) {
+    console.info('Request Canceled')
+  } else if (axios.isAxiosError(error)) {
     if (error.response) {
       console.error(`Server returned an error with status code: ${error.response.status}`);
     } else if (error.request) {

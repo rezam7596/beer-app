@@ -4,7 +4,13 @@ import handle from '../../utils/error';
 
 let controller: AbortController | null = null;
 
-const fetchData = (setData: (data: Array<Beer>) => void, query: string) => {
+type FetchDataInput = {
+  setData: (data: Array<Beer>) => void;
+  query: string;
+  setLoading?: (loading: boolean) => void
+}
+
+const fetchData = ({ setData, query, setLoading }: FetchDataInput) => {
   (async () => {
     try {
       if (controller) {
@@ -12,6 +18,7 @@ const fetchData = (setData: (data: Array<Beer>) => void, query: string) => {
         controller = null;
       }
       let response;
+      setLoading?.(true)
       if (query) {
         controller = new AbortController();
         response = await searchBeerList(query, { signal: controller.signal });
@@ -22,6 +29,8 @@ const fetchData = (setData: (data: Array<Beer>) => void, query: string) => {
       setData(response.data);
     } catch (error) {
       handle(error);
+    } finally {
+      setLoading?.(false)
     }
   })();
 };

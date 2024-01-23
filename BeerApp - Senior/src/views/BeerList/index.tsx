@@ -14,13 +14,18 @@ const BeerList = () => {
   let [searchParams] = useSearchParams();
   const [beerList, setBeerList] = useState<Array<Beer>>([]);
   const [beerListMetadata, setBeerListMetadata] = useState<ApiMetadata>();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const params = Object.fromEntries(searchParams.entries())
-    fetchData(({list, metadata}) => {
-      setBeerList(list);
-      setBeerListMetadata(metadata)
-    }, {per_page: 10, ...params})
+    fetchData({
+      setData: ({list, metadata}) => {
+        setBeerList(list);
+        setBeerListMetadata(metadata)
+      },
+      params: {per_page: 10, ...params},
+      setLoading,
+    })
   }, [searchParams]);
 
   const onBeerClick = (id: string) => navigate(`/beer/${id}`);
@@ -31,7 +36,7 @@ const BeerList = () => {
         <header>
           <h1>BeerList page</h1>
         </header>
-        <BeerFilter/>
+        <BeerFilter loading={loading}/>
         <div className={styles.beerSort}>
           <BeerSort/>
         </div>

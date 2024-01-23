@@ -7,9 +7,16 @@ type DATA = {
   metadata: ApiMetadata;
 }
 
-const fetchData = (setData: (data: DATA) => void, params: ApiParams) => {
+type FetchDataInput = {
+  setData: (data: DATA) => void;
+  params: ApiParams;
+  setLoading?: (loading: boolean) => void
+}
+
+const fetchData = ({ setData, params, setLoading }: FetchDataInput) => {
   (async () => {
     try {
+      setLoading?.(true);
       const [
         { data: list },
         { data: metadata }
@@ -20,6 +27,8 @@ const fetchData = (setData: (data: DATA) => void, params: ApiParams) => {
       setData({ list, metadata });
     } catch (error) {
       handle(error);
+    } finally {
+      setLoading?.(false);
     }
   })();
 };

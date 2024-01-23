@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { fetchData } from './utils';
 import { Beer } from '../../types';
-import { Paper, TextField } from '@mui/material';
+import {CircularProgress, InputAdornment, Paper, TextField} from '@mui/material';
 import styles from './Home.module.css';
 import SavedList from "../../components/SavedList";
 import { SavedListProvider } from "../../components/SavedList/SavedListProvider";
@@ -9,13 +9,14 @@ import HomeBeerItem from "../../components/HomeBeerItem";
 
 const HomeComponent = () => {
   const [beerList, setBeerList] = useState<Array<Beer>>([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetchData(setBeerList, '')
+    fetchData({ setData: setBeerList, query: '', setLoading })
   }, []);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    fetchData(setBeerList, event.target.value)
+    fetchData({ setData: setBeerList, query: event.target.value, setLoading })
   }
 
   return (
@@ -25,7 +26,18 @@ const HomeComponent = () => {
           <Paper>
             <div className={styles.listContainer}>
               <div>
-                <TextField label='Filter...' variant='outlined' onChange={handleSearch} />
+                <TextField
+                  label='Filter...'
+                  variant='outlined'
+                  onChange={handleSearch}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end" sx={{ visibility: loading ? 'visible': 'hidden' }}>
+                        <CircularProgress size={25} />
+                      </InputAdornment>
+                    )
+                  }}
+                />
               </div>
               <ul className={styles.list}>
                 {beerList.map(beer => <HomeBeerItem key={beer.id} beer={beer} />)}

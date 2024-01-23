@@ -10,6 +10,12 @@
   gap: 10px;
 }
 
+.button {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
 @media screen and (max-width: 600px) {
   .container {
     flex-direction: column;
