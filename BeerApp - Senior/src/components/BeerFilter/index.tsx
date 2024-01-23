@@ -1,12 +1,9 @@
 import * as React from 'react';
 import styles from './BeerFilter.module.css';
 import {
-  Button,
-  TextField,
-  Select,
-  MenuItem,
-  SelectChangeEvent, FormControl, InputLabel
+  Button, TextField, Select, MenuItem, SelectChangeEvent, FormControl, InputLabel,
 } from "@mui/material";
+import ClearIcon from '@mui/icons-material/Clear';
 import { beerTypes } from "./constants";
 import { capitalizeFirstLetter, removeEmptyProperties } from "../../utils";
 import { useSearchParams } from "react-router-dom";
@@ -45,7 +42,7 @@ const BeerFilter = () => {
   return (
     <div className={styles.container}>
       <div className={styles.inputs}>
-        <TextField name="by_name" label='Name' value={state.by_name} onChange={handleChange} sx={{ width: 300 }}/>
+        <TextField name="by_name" label='Name' value={state.by_name} onChange={handleChange} sx={{ minWidth: 200 }}/>
         <FormControl fullWidth >
           <InputLabel id="type-select-label">Type</InputLabel>
           <Select
@@ -54,8 +51,9 @@ const BeerFilter = () => {
             value={state.by_type}
             label="Type"
             onChange={handleSelectChange}
-            sx={{ width: 200 }}
+            sx={{ minWidth: 200 }}
           >
+            <MenuItem value={''}><em>None</em></MenuItem>
             {beerTypes.map(type => (<MenuItem key={type} value={type}>{capitalizeFirstLetter(type)}</MenuItem>))}
           </Select>
         </FormControl>

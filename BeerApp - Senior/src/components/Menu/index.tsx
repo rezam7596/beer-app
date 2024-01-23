@@ -62,7 +62,7 @@ export default function ResponsiveDrawer(props: Props) {
       <TopBar drawerWidth={drawerWidth} handleDrawerToggle={handleDrawerToggle} />
       <Box
         component='nav'
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        sx={{ width: { md: drawerWidth }, flexShrink: { md: 0 } }}
         aria-label='mailbox folders'
       >
         <Drawer
@@ -73,7 +73,7 @@ export default function ResponsiveDrawer(props: Props) {
             keepMounted: true,
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
+            display: { xs: 'block', md: 'none' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
         >
@@ -82,7 +82,7 @@ export default function ResponsiveDrawer(props: Props) {
         <Drawer
           variant='permanent'
           sx={{
-            display: { xs: 'none', sm: 'block' },
+            display: { xs: 'none', md: 'block' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
           open
@@ -95,7 +95,7 @@ export default function ResponsiveDrawer(props: Props) {
         sx={{
           flexGrow: 1,
           p: 3,
-          width: { sm: `calc(100% - ${drawerWidth}px)`, background: '#f7f7f7' },
+          width: { md: `calc(100% - ${drawerWidth}px)`, background: '#f7f7f7' },
         }}
       >
         <Toolbar />
