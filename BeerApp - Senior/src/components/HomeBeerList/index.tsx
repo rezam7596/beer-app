@@ -17,7 +17,7 @@ const HomeBeerList = ({ list }: { list: Array<Beer>}) => {
           toggleBeerSave={toggleBeerSave}
         />
       ))}
-      {!list.length && <li>No items</li>}
+      {!list.length && <li data-testid="no-item">No items</li>}
     </ul>
   );
 };

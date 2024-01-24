@@ -11,7 +11,7 @@ const BeerSaved = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <h3>Saved items</h3>
-        <Button variant='contained' size='small' onClick={() => removeAllSaves()}>
+        <Button data-testid="remove-all" variant='contained' size='small' onClick={() => removeAllSaves()}>
           Remove all items
         </Button>
       </div>

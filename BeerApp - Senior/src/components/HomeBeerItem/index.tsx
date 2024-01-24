@@ -12,8 +12,9 @@ interface Props {
 }
 const HomeBeerItem = ({ beer, isSaved, toggleBeerSave }: Props) => {
   return (
-    <li key={beer.id}>
+    <li key={beer.id} data-testid="beer-item">
       <Checkbox
+        data-testid="toggle-save"
         checked={isSaved}
         onChange={() => toggleBeerSave(beer)}
         icon={<FavoriteBorder/>}

@@ -15,7 +15,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": ".",
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
-  "include": ["src", "typings.d.ts"]
+  "include": ["src", "typings.d.ts", "cypress.d.ts"]
 }
