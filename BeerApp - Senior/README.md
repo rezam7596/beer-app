@@ -51,6 +51,12 @@ We will discuss the proposed solution during the interview. You should be ready 
     - Optimized caching for SPA.
     - Works offline; retains the latest 100 API call responses.
     - Limitation: Searching uncached APIs in offline mode.
+<details>
+  <summary>Screenshot</summary>
+
+![image](https://github.com/rezam7596/beer-app/assets/13423390/806d5bb5-80f5-4f44-8fd8-9f633c2b9ac4)
+
+</details>
 
 ### Other Considerations
 - Handles loading states appropriately.
