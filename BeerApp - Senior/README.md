@@ -13,7 +13,7 @@ We will discuss the proposed solution during the interview. You should be ready 
 ## Task Implementation Considerations
 
 ### Tasks Overview
-Project is accessible at https://beer-wiki.pages.dev/
+Demo is available at https://beer-wiki.pages.dev/
 
 - **Beer Page Styling**
     - Used animations to improve visual appeal
