@@ -1,0 +1,16 @@
+.light {
+    --background-default: #F7D08A;
+    --background-paper: #C8DFF9;
+    --text-primary: #541313;
+    --link-color: #0000EE;
+    --border-color: #fff;
+    --beer-color: #742017;
+}
+.dark {
+    --background-default: #604006;
+    --background-paper: #474747;
+    --text-primary: #FDEFC4;
+    --link-color: #8585FF;
+    --border-color: #f4f4f4;
+    --beer-color: #F8C059;
+}

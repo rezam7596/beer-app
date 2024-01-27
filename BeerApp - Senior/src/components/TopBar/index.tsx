@@ -1,5 +1,7 @@
 import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import ThemeModeButton from "../ThemeProvider/ThemeModeButton";
+import styles from './TopBar.module.css'
 
 interface Props {
   drawerWidth: number;
@@ -15,19 +17,22 @@ const TopBar = (props: Props) => {
         ml: { md: `${props.drawerWidth}px` },
       }}
     >
-      <Toolbar>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          edge="start"
-          onClick={props.handleDrawerToggle}
-          sx={{ mr: 2, display: { md: 'none' } }}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" noWrap component="div">
-          Beer Wiki
-        </Typography>
+      <Toolbar className={styles.topBar}>
+        <div className={styles.topBarLeft}>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={props.handleDrawerToggle}
+            sx={{ mr: 2, display: { md: 'none' } }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" noWrap component="div">
+            Beer Wiki
+          </Typography>
+        </div>
+        <ThemeModeButton />
       </Toolbar>
     </AppBar>
     );

@@ -1,9 +1,9 @@
 .container {
   font-family: "Cherry Swash", serif;
-  background-color: #C8DFF9;
+  background-color: var(--background-paper);
   display: flex;
   gap: 20px;
-  border: #fff solid 5px;
+  border: var(--border-color) solid 5px;
   border-radius: 15px;
   width: 100%;
   overflow: hidden;
@@ -27,6 +27,7 @@
 
 .infoRow a {
   text-decoration: none;
+  color: var(--link-color);
 }
 
 .infoRow img {

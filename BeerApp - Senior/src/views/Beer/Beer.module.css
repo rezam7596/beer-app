@@ -4,8 +4,8 @@
   margin: -24px -24px -80px;
   padding-top: 24px;
   padding-bottom: 80px;
-  color: #541313;
-  background-color: #F7D08A;
+  color: var(--text-primary);
+  background-color: var(--background-default);
 }
 
 .innerContainer {
