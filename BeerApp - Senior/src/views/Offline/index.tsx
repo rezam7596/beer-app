@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Alert, AlertTitle } from "@mui/material";
+import styles from './Offline.module.css'
 
 const Offline = () => {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
@@ -18,7 +19,7 @@ const Offline = () => {
   }, []);
 
   return isOnline ? null : (
-    <article>
+    <article className={styles.container}>
       <section>
         <Alert severity="warning">
           <AlertTitle>You are offline</AlertTitle>

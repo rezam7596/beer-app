@@ -17,14 +17,14 @@ const Beer = () => {
 
   return (
     <article className={styles.container}>
-      <div className={`${styles.innerContainer} ${!beer ? styles.loading : ''}`}>
+      <div className={`${styles.innerContainer} ${beer ? styles.loaded : ''}`}>
         {beer && (
-          <>
+          <div className={styles.info}>
             <BeerPageHeader beer={beer} />
             <BeerPageInfo beer={beer} />
-          </>
+          </div>
         )}
-        <div className={styles.bottomSection}>
+        <div className={styles.slogan}>
           <p className={styles.bottomText}>KEEP CALM <span>AND</span> DRINK BEER</p>
           <BeerPageAnimatedBeer />
         </div>

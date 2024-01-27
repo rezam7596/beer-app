@@ -15,20 +15,25 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-.innerContainer.loading {
   justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
-.bottomSection {
+.info {
   width: 100%;
-  margin-top: 100px;
+}
+
+.slogan {
+  width: 100%;
   font-family: Lemon, serif;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.loaded .slogan {
+  margin-top: 100px;
 }
 
 .bottomText {
@@ -42,21 +47,49 @@
 }
 
 @media screen and (max-width: 600px) {
-  .bottomSection {
+  .loaded .slogan {
     margin-top: 50px;
   }
 }
 
-/* Tall Desktop Screens */
+/* Big Screens */
 @media (min-width: 600px) and (min-height: 900px) {
   .container {
     min-height: 100vh;
   }
   .innerContainer {
-    justify-content: center;
     min-height: 90vh;
+    padding-bottom: 200px;
   }
-  .bottomSection {
-    margin-top: 150px;
+
+  .slogan {
+    position: absolute;
+  }
+
+  .loaded .info {
+    animation: info-fade-in 1s ease-in;
+    animation-fill-mode: forwards;
+  }
+  .loaded .slogan {
+    animation: slogan-slide-down 1s cubic-bezier(0.25,0.1,0.25,1);
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes info-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slogan-slide-down {
+  from {
+    margin-top: 0;
+  }
+  to {
+    margin-top: 850px;
   }
 }
