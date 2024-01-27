@@ -6,7 +6,7 @@ import { NetworkFirst } from "workbox-strategies";
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
-import { imageCache, staticResourceCache, googleFontsCache } from 'workbox-recipes';
+import { imageCache, staticResourceCache as workboxStaticResourceCache, googleFontsCache } from 'workbox-recipes';
 
 declare const self: ServiceWorkerGlobalScope;
 
@@ -15,27 +15,19 @@ self.addEventListener('install', () => {
 });
 clientsClaim();
 
-webpackAssetsCache();
+precacheAndRoute(self.__WB_MANIFEST);
 
 navigationCache();
 
+staticResourceCache();
+
 // https://developer.chrome.com/docs/workbox/modules/workbox-recipes#google_fonts_cache
 googleFontsCache();
-
-// https://developer.chrome.com/docs/workbox/modules/workbox-recipes#static_resources_cache
-staticResourceCache();
 
 // https://developer.chrome.com/docs/workbox/modules/workbox-recipes#image_cache
 imageCache();
 
 apiCache();
-
-function webpackAssetsCache() {
-  const precacheAssets = [
-    { url: '/manifest.json', revision: new Date().getTime().toString().concat('manifest-json') },
-  ].concat(self.__WB_MANIFEST as any);
-  precacheAndRoute(precacheAssets);
-}
 
 function navigationCache() {
   // return index.html for all navigation requests.
@@ -43,6 +35,14 @@ function navigationCache() {
   const handler = createHandlerBoundToURL('/index.html');
   const navigationRoute = new NavigationRoute(handler);
   registerRoute(navigationRoute);
+}
+
+function staticResourceCache() {
+  // https://developer.chrome.com/docs/workbox/modules/workbox-recipes#static_resources_cache
+  workboxStaticResourceCache({
+    // CSS, JavaScript, Web Workers, manifest.json
+    matchCallback: ({ request}) => ['style', 'script', 'worker', 'manifest'].includes(request.destination)
+  })
 }
 
 function apiCache() {

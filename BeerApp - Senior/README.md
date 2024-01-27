@@ -11,10 +11,9 @@ We will discuss the proposed solution during the interview. You should be ready 
 - Progressive Web App, offline
 
 ## Task Implementation Considerations
-
-### Tasks Overview
 Demo is available at https://beer-wiki.pages.dev/
 
+### Tasks Overview
 - **Beer Page Styling**
     - Used animations to improve visual appeal
     - Optimized for mobile, laptop screens, and large monitors.
